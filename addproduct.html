@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/addproduct.css">
+    <title>Add Product Page</title>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span> | <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
+    </header>
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h2>Add Product</h2>
+        <form id="add-product-form">
+            <div class="form-group">
+                <label for="product-id">Product ID:</label>
+                <input type="text" id="product-id" name="product-id" required>
+            </div>
+            <div class="form-group">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" name="product-name" required>
+            </div>
+            <div class="form-group">
+                <label for="product-type">Product Type:</label>
+                <input type="text" id="product-type" name="product-type" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+                <label for="image-url">Image URL:</label>
+                <input type="text" id="image-url" name="image-url" required>
+            </div>
+            <button id="submit" type="submit">Add Product</button>
+        </form>
+        <!-- Error message display -->
+        <div id="error-message" style="color: red; margin-top: 10px;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 SMART FARM. All rights reserved.</p>
+    </footer>
+</body>
+<script src="./scripts/addproduct.js"></script>
+</html>

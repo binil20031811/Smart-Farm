@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/login.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <title>Login Page</title>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span> | <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a class="active" href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="user-type">Select User:</label>
+                <select id="user-type" name="user-type" required>
+                    <option value="" disabled selected>Select User</option>
+                    <option value="admin">Admin</option>
+                    <option value="worker">Worker</option>
+                    <option value="cashier">Cashier</option>
+                    <option value="customer">Customer</option>
+                    <option value="medic">Medic</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" required>
+                    <i class="fas fa-eye" id="togglePassword"></i>
+                </div>
+                <div class="form-group" id="signup-option" style="display: none;">
+                    <p>Don't have an account? <a href="signup.html" id="signup-link">Sign up here</a></p>
+                </div>
+            </div>
+<button type="submit" id="login-btn" class="login-button">
+    <i class="fas fa-sign-in-alt"></i> Login
+</button>
+        </form>
+        <div id="error-message" class="error-message"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 SMART FARM. All rights reserved.</p>
+    </footer>
+    
+    <script src="./scripts/login.js"></script>
+</body>
+</html>

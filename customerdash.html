@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART FARM Products</title>
+    <link rel="stylesheet" href="./styles/coustomer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span> | <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a href="#products">Products</a>
+            <a href="#cart">Cart</a>
+            <a href="about.html">About</a>
+            <a href="logout.php">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="products">
+            <aside class="sidebar">
+                <ul>
+                    <li><a href="#" onclick="filterProducts('all')">All</a></li>
+                    <li><a href="#" onclick="filterProducts('egg')">Eggs</a></li>
+                    <li><a href="#" onclick="filterProducts('milk')">Milk</a></li>
+                    <li><a href="#" onclick="filterProducts('meat')">Meat</a></li>
+                </ul>
+            </aside>
+            <div class="product-grid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <section id="cart">
+            <h2>Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <p id="total-price">Total: ₹0.00</p>
+            <button class="cb" onclick="clearCart()">Clear Cart</button>
+            <button onclick="revcart()">Place Order</button>
+        </section>
+    </main>
+
+    <!-- Bill Popup -->
+    <div id="bill-popup" class="bill-popup">
+        <div class="bill-content">
+            <div class="bill-header">
+                <h2>Order Summary</h2>
+                <p>Thank you for shopping with SMART FARM!</p>
+            </div>
+            <div class="bill-body">
+                <ul id="bill-items">
+                    <!-- Bill items will be dynamically inserted here -->
+                </ul>
+            </div>
+            <div class="bill-footer">
+                <p id="bill-total-price"><strong>Total: ₹0.00</strong></p>
+                <div class="bill-buttons">
+                    <button onclick="confirmOrder()">Confirm Order</button>
+                    <button onclick="closeBillPopup()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 SMART FARM Products. All rights reserved.</p>
+    </footer>
+
+    <script src="./scripts/coustomer.js"></script>
+</body>
+</html>

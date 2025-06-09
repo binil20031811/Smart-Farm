@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/finance.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <title>Finance - SMART FARM</title>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span> | <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="finance-container">
+            <h2>Finance Details</h2>
+            <div class="date-filter">
+                <label for="from-date">From Date:</label>
+                <input type="date" id="from-date" name="from-date">
+                <label for="to-date">To Date:</label>
+                <input type="date" id="to-date" name="to-date">
+                <button id="filter-btn">Filter</button>
+                <button id="download-report-btn">Download Report</button>
+            </div>
+            <div class="finance-tables">
+                <div class="income-table">
+                    <h3>Income</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="income-body">
+                            <!-- Income data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="expense-table">
+                    <h3>Expenses</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expense-body">
+                            <!-- Expense data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Plus Button -->
+    <div class="floating-btn" id="add-finance-btn" title="Add Finance">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 SMART FARM. All rights reserved.</p>
+    </footer>
+
+    <!-- Include jsPDF and jspdf-autotable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.24/jspdf.plugin.autotable.min.js"></script>
+    <script src="./scripts/finance.js"></script>
+</body>
+</html>

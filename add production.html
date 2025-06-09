@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Daily Production Details - SMART FARM</title>
+    <link rel="stylesheet" href="./styles/add_production.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span> | <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
+    </header>
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a href="workerdash.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a class="active" href="production.html">Add Production</a>
+        </div>
+    </nav>
+    <section class="hero">
+        <h1>Add Daily Production Details</h1>
+        <p>Fill in the details of today's production.</p>
+    </section>
+    <!-- Add these elements to your form section -->
+<section class="form-section">
+    <form class="production-form">
+        <div class="info-display">
+            <p>Date: <span id="current-date"></span></p>
+            <p>Worker Section: <span id="worker-section"></span></p>
+            <p>Output Product: <span id="section-output"></span></p>
+        </div>
+        
+        <input type="hidden" id="product-name">
+        <input type="hidden" id="production-date">
+        
+        <input type="number" id="quantity" name="quantity" placeholder="Quantity Produced" step="0.01" min="0" required>
+        
+        <textarea id="notes" name="notes" rows="4" placeholder="Notes"></textarea>
+        
+        <button type="submit" class="btn-primary">Submit</button>
+    </form>
+</section>
+    <footer>
+        <p>&copy; 2023 SMART FARM. All rights reserved.</p>
+    </footer>
+    <script src="scripts/add_production.js"></script>
+</body>
+</html>

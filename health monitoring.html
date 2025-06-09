@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section Details - SMART FARM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #F5F5F5;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .contact-info span {
+            margin-right: 10px;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: #333333;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .edit-popup {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .edit-popup h3 {
+            margin-top: 0;
+            color: #2E7D32;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .edit-form-group {
+            margin-bottom: 15px;
+        }
+
+        .edit-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .edit-form-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .edit-form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .edit-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .edit-btn-cancel {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .edit-btn-save {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .edit-btn-save:hover {
+            background: #3e8e41;
+        }
+
+        /* Edit button in cards */
+        .edit-healthy-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+            transition: background 0.2s;
+        }
+
+        .edit-healthy-btn:hover {
+            background: #3e8e41;
+        }
+        .social-icons a:hover i {
+            color: #4CAF50;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #4CAF50;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .navbar .logo span {
+            color: #2E7D32;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #2E7D32;
+            border-bottom: 2px solid #2E7D32;
+        }
+
+        .navbar .nav-links a.active {
+            border-bottom: 2px solid #2E7D32;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #4CAF50;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            margin: 15px 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .content-container {
+            flex: 1;
+            padding: 40px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            color: #2E7D32;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Section Cards */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-card-header {
+            padding: 20px;
+            background-color: #E8F5E9;
+            border-bottom: 1px solid #C8E6C9;
+        }
+
+        .section-card-header h3 {
+            margin: 0;
+            color: #2E7D32;
+            font-size: 1.3rem;
+        }
+
+        .section-card-body {
+            padding: 20px;
+        }
+
+        .section-detail {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #E0E0E0;
+        }
+
+        .section-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #616161;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #333333;
+        }
+
+        .health-indicator {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .health-good {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .health-warning {
+            background-color: #FFF3E0;
+            color: #E65100;
+        }
+
+        /* Loading State */
+        .loading-state {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-state i {
+            color: #4CAF50;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #2E7D32;
+            color: #FFFFFF;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header, .navbar {
+                padding: 10px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content-container {
+                padding: 20px;
+            }
+
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span>
+            <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+    
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a href="medicdash.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="add reminder.html">Add Reminder</a>
+            <a class="active" href="section_details.html">Sections</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>Farm Sections</h1>
+        <p>Detailed overview of all farm sections and their status</p>
+    </section>
+    
+    <main class="content-container">
+        <div class="section-header">
+            <h2>Section Details</h2>
+        </div>
+        
+        <div id="sections-container">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading section details...</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 SMART FARM. All rights reserved.</p>
+    </footer>
+    <div class="popup-overlay" id="editPopup">
+        <div class="edit-popup">
+            <span class="popup-close" id="closePopup">&times;</span>
+            <h3>Edit Healthy Animals</h3>
+            <div class="edit-form-group">
+                <label for="editSectionName">Section Name:</label>
+                <input type="text" id="editSectionName" readonly>
+            </div>
+            <div class="edit-form-group">
+                <label for="editTotalAnimals">Total Animals:</label>
+                <input type="number" id="editTotalAnimals" readonly>
+            </div>
+            <div class="edit-form-group">
+                <label for="editHealthyAnimals">Healthy Animals:</label>
+                <input type="number" id="editHealthyAnimals" min="0">
+            </div>
+            <div class="edit-form-group">
+                <label>Weak Animals:</label>
+                <span id="editWeakAnimals">0</span>
+            </div>
+            <div class="edit-form-actions">
+                <button class="edit-btn edit-btn-cancel" id="cancelEdit">Cancel</button>
+                <button class="edit-btn edit-btn-save" id="saveEdit">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // First, verify the container exists
+            const container = document.getElementById('sections-container');
+            if (!container) {
+                console.error('Could not find sections container');
+                return;
+            }
+            
+            // Show loading state immediately
+            container.innerHTML = `
+                <div class="loading-state">
+                    <i class="fas fa-spinner fa-spin fa-2x"></i>
+                    <p>Loading section details...</p>
+                </div>`;
+            
+            // Then load the sections
+            loadSections();
+            
+            // Setup popup event listeners
+            document.getElementById('closePopup')?.addEventListener('click', closeEditPopup);
+            document.getElementById('cancelEdit')?.addEventListener('click', closeEditPopup);
+            document.getElementById('saveEdit')?.addEventListener('click', saveHealthyCount);
+            document.getElementById('editHealthyAnimals')?.addEventListener('input', updateWeakCount);
+        });
+
+        let currentSection = null;
+
+        function loadSections() {
+            const container = document.getElementById('sections-container');
+            if (!container) return;
+            
+            fetch('./php/getsection.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json().catch(e => {
+                        throw new Error('Invalid JSON response');
+                    });
+                })
+                .then(sections => {
+                    if (!Array.isArray(sections)) {
+                        throw new Error('Invalid data format');
+                    }
+
+                    if (sections.length === 0) {
+                        container.innerHTML = `
+                            <div class="no-sections">
+                                <i class="far fa-folder-open fa-2x"></i>
+                                <p>No sections found</p>
+                            </div>`;
+                        return;
+                    }
+
+                    let html = '<div class="sections-grid">';
+                    
+                    sections.forEach(section => {
+                        // Add null checks for section properties
+                        const totalAnimals = section.no_of_animals || 0;
+                        const healthyAnimals = section.healthy || 0;
+                        const healthPercentage = totalAnimals > 0 
+                            ? Math.round((healthyAnimals / totalAnimals) * 100)
+                            : 0;
+                        
+                        const weakAnimals = totalAnimals - healthyAnimals;
+                        const needsAttention = weakAnimals > 0;
+                        
+                        html += `
+                        <div class="section-card">
+                            <div class="section-card-header">
+                                <h3>${section.id || ''}: ${section.name || 'Unnamed Section'}</h3>
+                            </div>
+                            <div class="section-card-body">
+                                <div class="section-detail">
+                                    <span class="detail-label">Animal Type:</span>
+                                    <span class="detail-value">${section.animal_type || 'N/A'}</span>
+                                </div>
+                                <div class="section-detail">
+                                    <span class="detail-label">Total Animals:</span>
+                                    <span class="detail-value">${totalAnimals}</span>
+                                </div>
+                                <div class="section-detail">
+                                    <span class="detail-label">Healthy Animals:</span>
+                                    <span class="detail-value">
+                                        ${healthyAnimals}
+                                        <button class="edit-healthy-btn" 
+                                            data-id="${section.id}"
+                                            data-name="${section.name || ''}"
+                                            data-total="${totalAnimals}"
+                                            data-healthy="${healthyAnimals}">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        <span class="health-indicator health-good">${healthPercentage}% healthy</span>
+                                    </span>
+                                </div>
+                                <div class="section-detail">
+                                    <span class="detail-label">Weak Animals:</span>
+                                    <span class="detail-value">
+                                        ${weakAnimals}
+                                        ${needsAttention ? '<span class="health-indicator health-warning">Needs attention</span>' : ''}
+                                    </span>
+                                </div>
+                                <div class="section-detail">
+                                    <span class="detail-label">Output Product:</span>
+                                    <span class="detail-value">${section.output || 'N/A'}</span>
+                                </div>
+                            </div>
+                        </div>`;
+                    });
+                    
+                    html += '</div>';
+                    container.innerHTML = html;
+                    
+                    // Add event listeners to all edit buttons
+                    document.querySelectorAll('.edit-healthy-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            openEditPopup(
+                                this.getAttribute('data-id'),
+                                this.getAttribute('data-name'),
+                                parseInt(this.getAttribute('data-total')) || 0,
+                                parseInt(this.getAttribute('data-healthy')) || 0
+                            );
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading sections:', error);
+                    container.innerHTML = `
+                        <div class="error-state">
+                            <i class="fas fa-exclamation-triangle fa-2x"></i>
+                            <p>Failed to load section details. Please try again.</p>
+                            <p>Error: ${error.message}</p>
+                        </div>`;
+                });
+        }
+
+        // Rest of your JavaScript functions remain the same
+        function openEditPopup(id, name, total, healthy) {
+            currentSection = { id, name, total, healthy };
+            document.getElementById('editSectionName').value = name;
+            document.getElementById('editTotalAnimals').value = total;
+            document.getElementById('editHealthyAnimals').value = healthy;
+            document.getElementById('editWeakAnimals').textContent = total - healthy;
+            document.getElementById('editPopup').style.display = 'flex';
+        }
+
+        function closeEditPopup() {
+            document.getElementById('editPopup').style.display = 'none';
+        }
+
+        function updateWeakCount() {
+            const healthyInput = document.getElementById('editHealthyAnimals');
+            let healthy = parseInt(healthyInput.value) || 0;
+            const total = currentSection.total;
+            
+            // Validate input
+            if (healthy < 0) {
+                healthy = 0;
+                healthyInput.value = 0;
+            } else if (healthy > total) {
+                healthy = total;
+                healthyInput.value = total;
+            }
+            
+            document.getElementById('editWeakAnimals').textContent = total - healthy;
+        }
+
+        function saveHealthyCount() {
+            const healthy = parseInt(document.getElementById('editHealthyAnimals').value);
+            const saveBtn = document.getElementById('saveEdit');
+            
+            if (isNaN(healthy)) {
+                alert('Please enter a valid number');
+                return;
+            }
+
+            // Show loading state
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            
+            fetch('./php/update_section.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: currentSection.id,
+                    healthy: healthy
+                })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                if (!data.success) {
+                    throw new Error(data.error || 'Update failed');
+                }
+                closeEditPopup();
+                loadSections(); // Refresh the data
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error saving: ' + error.message);
+            })
+            .finally(() => {
+                saveBtn.disabled = false;
+                saveBtn.textContent = 'Save';
+            });
+        }
+    </script>
+</body>
+</html>

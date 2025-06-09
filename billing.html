@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART FARM Dashboard</title>
+    <link rel="stylesheet" href="./styles/cashier.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span> | <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a class="active" href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="title-bar">
+            <h1>Bill</h1>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search products...">
+                <div id="search-results"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="entry-date">Entry Date</label>
+            <input type="text" id="entry-date" value="04/03/2025">
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sinc</th>
+                        <th>Item Name</th>
+                        <th>MRP</th>
+                        <th>Unit</th>
+                        <th>Qty</th>
+                        <th>Line Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="checkout-table-body">
+                    <!-- Rows will be added dynamically -->
+                </tbody>
+            </table>
+        </div>
+        <div class="totals">
+            <div>
+                <label for="bill-total">Bill Total :</label>
+                <input type="text" id="bill-total" value="0.00" readonly>
+            </div>
+            <div class="buttonss">
+                <button id="print-button" disabled>PRINT</button>
+                <button id="save-button">SAVE</button>
+                <button id="clear-button">CLEAR</button>
+                <button id="download-button" disabled>DOWNLOAD BILL</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2023 SMART FARM. All rights reserved.</p>
+    </footer>
+    <script src="./scripts/cashier.js"></script>
+</body>
+</html>

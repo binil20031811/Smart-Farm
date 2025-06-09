@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Reminder - SMART FARM</title>
+    <link rel="stylesheet" href="./styles/add reminder.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span> | <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
+    </header>
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a href="medicdash.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a class="active" href="add_reminder.html">Add Reminder</a>
+        </div>
+    </nav>
+    <section class="hero">
+        <h1>Add New Reminder</h1>
+        <p>Create reminders for farm sections with important dates and notes.</p>
+    </section>
+    
+    <section class="form-section">
+        <form class="reminder-form" id="reminderForm">
+            <div class="form-group">
+                <label for="reminder-date">Reminder Date:</label>
+                <input type="date" id="reminder-date" name="reminder-date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="section">Farm Section:</label>
+                <select id="section" name="section" required>
+                    <option value="">Loading sections...</option>
+                    <!-- Options will be populated from database via JavaScript -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="reminder-notes">Reminder Notes:</label>
+                <textarea id="reminder-notes" name="reminder-notes" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Save Reminder</button>
+                <button type="reset" class="btn-secondary">Clear</button>
+            </div>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2023 SMART FARM. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch sections from database when page loads
+            fetchSections();
+            
+            // Form submission handler
+            document.getElementById('reminderForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveReminder();
+            });
+        });
+        
+        function fetchSections() {
+            const sectionSelect = document.getElementById('section');
+            
+            fetch('./php/get_sections.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(sections => {
+                    // Clear loading message
+                    sectionSelect.innerHTML = '<option value="">Select a section</option>';
+                    
+                    // Populate dropdown with sections from database
+                    sections.forEach(section => {
+                        const option = document.createElement('option');
+                        option.value = section.id;
+                        option.textContent = section.id;
+                        sectionSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching sections:', error);
+                    sectionSelect.innerHTML = '<option value="">Error loading sections</option>';
+                });
+        }
+        
+        function saveReminder() {
+    const date = document.getElementById('reminder-date').value;
+    const sectionId = document.getElementById('section').value;
+    const notes = document.getElementById('reminder-notes').value;
+
+    // Show loading state
+    const submitBtn = document.querySelector('.btn-primary');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+    fetch('./php/save_reminder.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            date: date,
+            section_id: sectionId,
+            notes: notes
+        })
+    })
+    .then(response => {
+        // First check if response is JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error("Server didn't return JSON");
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            alert('Reminder saved successfully!');
+            document.getElementById('reminderForm').reset();
+        } else {
+            throw new Error(data.error || 'Unknown error occurred');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error saving reminder: ' + error.message);
+    })
+    .finally(() => {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save Reminder';
+    });
+}
+    </script>
+</body>
+</html>

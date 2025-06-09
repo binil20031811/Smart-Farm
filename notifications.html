@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - SMART FARM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #F5F5F5;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .contact-info span {
+            margin-right: 10px;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: #333333;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover i {
+            color: #4CAF50;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #4CAF50;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .navbar .logo span {
+            color: #2E7D32;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #2E7D32;
+            border-bottom: 2px solid #2E7D32;
+        }
+
+        .navbar .nav-links a.active {
+            border-bottom: 2px solid #2E7D32;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #4CAF50;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            margin: 15px 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Notifications Container */
+        .notifications-container {
+            flex: 1;
+            padding: 40px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .notifications-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .notifications-header h2 {
+            color: #2E7D32;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .status-tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .status-tag {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-tag.today {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #2E7D32;
+        }
+
+        .status-tag.tomorrow {
+            background-color: #E8F5E9;
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+
+        /* Reminders Sections */
+        .reminders-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 15px 25px;
+            background-color: #E8F5E9;
+            border-bottom: 1px solid #C8E6C9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header h3 {
+            margin: 0;
+            color: #2E7D32;
+            font-size: 1.2rem;
+        }
+
+        .reminders-list {
+            padding: 20px;
+        }
+
+        .no-reminders {
+            text-align: center;
+            padding: 30px;
+            color: #757575;
+        }
+
+        /* Reminder Cards */
+        .reminder-card {
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+            background-color: #FAFAFA;
+            border-radius: 6px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .reminder-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .reminder-card.today {
+            border-left-color: #2E7D32;
+        }
+
+        .reminder-card.upcoming {
+            border-left-color: #4CAF50;
+        }
+
+        .reminder-card.past {
+            border-left-color: #9E9E9E;
+        }
+
+        .reminder-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .reminder-date {
+            font-weight: 600;
+            color: #333333;
+        }
+
+        .reminder-status {
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .reminder-status.today {
+            background-color: #2E7D32;
+            color: white;
+        }
+
+        .reminder-status.upcoming {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .reminder-status.past {
+            background-color: #9E9E9E;
+            color: white;
+        }
+
+        .reminder-section {
+            background-color: #4CAF50;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .reminder-content {
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        /* Loading and Error States */
+        .loading-state, .error-state {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-state i {
+            color: #4CAF50;
+        }
+
+        .error-state i {
+            color: #F44336;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #2E7D32;
+            color: #FFFFFF;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header, .navbar {
+                padding: 10px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .notifications-container {
+                padding: 20px;
+            }
+
+            .notifications-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .reminder-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .reminder-section {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span>
+            <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+    
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a href="medicdash.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="add_reminder.html">Add Reminder</a>
+            <a class="active" href="notifications.html">Notifications</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>Farm Reminders</h1>
+        <p>View and manage your upcoming and past reminders</p>
+    </section>
+    
+    <main class="notifications-container">
+        <div class="notifications-header">
+            <h2>Your Reminders</h2>
+        </div>
+        
+        <div id="reminders-container">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                <p>Loading reminders...</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 SMART FARM. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('reminders-container')) {
+                loadReminders();
+                setInterval(loadReminders, 300000); // Refresh every 5 minutes
+            }
+        });
+
+        function loadReminders() {
+            const container = document.getElementById('reminders-container');
+            if (!container) return;
+            
+            container.innerHTML = `
+                <div class="loading-state">
+                    <i class="fas fa-spinner fa-spin fa-2x"></i>
+                    <p>Loading reminders...</p>
+                </div>
+            `;
+
+            fetch('./php/get_reminders.php')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    let html = '';
+                    const today = new Date().toISOString().split('T')[0];
+                    
+                    // Upcoming Reminders Section
+                    html += `
+                    <div class="reminders-section">
+                        <div class="section-header">
+                            <i class="fas fa-bell"></i>
+                            <h3>Upcoming Reminders</h3>
+                        </div>
+                        <div class="reminders-list">`;
+                    
+                    if (data.upcoming && data.upcoming.length > 0) {
+                        data.upcoming.forEach(reminder => {
+                            const isToday = reminder.reminder_date === today;
+                            html += createReminderCard(reminder, isToday ? 'today' : 'upcoming');
+                        });
+                    } else {
+                        html += `
+                        <div class="no-reminders">
+                            <i class="far fa-check-circle fa-2x"></i>
+                            <p>No upcoming reminders</p>
+                        </div>`;
+                    }
+                    html += `</div></div>`;
+                    
+                    // Past Reminders Section
+                    html += `
+                    <div class="reminders-section">
+                        <div class="section-header">
+                            <i class="fas fa-history"></i>
+                            <h3>Past Reminders</h3>
+                        </div>
+                        <div class="reminders-list">`;
+                    
+                    if (data.past && data.past.length > 0) {
+                        data.past.forEach(reminder => {
+                            html += createReminderCard(reminder, 'past');
+                        });
+                    } else {
+                        html += `
+                        <div class="no-reminders">
+                            <i class="far fa-check-circle fa-2x"></i>
+                            <p>No past reminders</p>
+                        </div>`;
+                    }
+                    html += `</div></div>`;
+                    
+                    container.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    container.innerHTML = `
+                    <div class="error-state">
+                        <i class="fas fa-exclamation-triangle fa-2x"></i>
+                        <p>Failed to load reminders. Please try again.</p>
+                    </div>`;
+                });
+        }
+
+        function createReminderCard(reminder, type) {
+            const dateObj = new Date(reminder.reminder_date);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            let statusText = '';
+            if (type === 'today') {
+                statusText = 'Today';
+            } else if (type === 'upcoming') {
+                statusText = 'Tomorrow';
+            } else {
+                const daysDiff = Math.floor((today - dateObj) / (1000 * 60 * 60 * 24));
+                statusText = `${daysDiff} day${daysDiff !== 1 ? 's' : ''} ago`;
+            }
+            
+            return `
+            <div class="reminder-card ${type}">
+                <div class="reminder-header">
+                    <div>
+                        <span class="reminder-date">${formatDate(reminder.date)}</span>
+                        <span class="reminder-section">${reminder.section_name}</span>
+                    </div>
+                    <span class="reminder-status ${type}">${statusText}</span>
+                </div>
+                <div class="reminder-content">${reminder.notes}</div>
+            </div>`;
+        }
+
+        function formatDate(dateString) {
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker Salary Management</title>
+    <link rel="stylesheet" href="./styles/addproduct.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles for salary management */
+        .salary-period {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .salary-period h3 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        .salary-controls {
+            display: flex;
+            gap: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .calculate-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+        .save-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .save-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .result-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <span>contact@smartfarm.com</span> | <span>+91 1234567890</span>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
+    </header>
+    
+    <nav class="navbar">
+        <div class="logo">SMART FARM<span>.</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h2>Worker Salary Management</h2>
+        
+        <div class="salary-period">
+            <h3>Salary Calculation Period</h3>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <select id="year" name="year">
+                    <option value="2023">2023</option>
+                    <option value="2024" selected>2024</option>
+                    <option value="2025">2025</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="month">Month:</label>
+                <select id="month" name="month">
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+        </div>
+
+        <table id="workersTable">
+            <thead>
+                <tr>
+                    <th>Worker ID</th>
+                    <th>Name</th>
+                    <th>Daily Salary</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Worker data will be loaded here via JavaScript -->
+            </tbody>
+        </table>
+
+        <div id="resultContainer" class="result-container">
+            <h3>Salary Calculation Result</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Worker Name</th>
+                        <td id="resultWorkerName"></td>
+                    </tr>
+                    <tr>
+                        <th>Period</th>
+                        <td id="resultPeriod"></td>
+                    </tr>
+                    <tr>
+                        <th>Daily Salary</th>
+                        <td id="resultDailySalary"></td>
+                    </tr>
+                    <tr>
+                        <th>Days Present</th>
+                        <td id="resultDaysPresent"></td>
+                    </tr>
+                    <tr>
+                        <th>Monthly Salary</th>
+                        <td id="resultMonthlySalary"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="confirmSave" class="save-btn">Confirm and Save to Expenses</button>
+        </div>
+
+        <!-- Error message display -->
+        <div id="error-message" style="color: red; margin-top: 10px;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 SMART FARM. All rights reserved.</p>
+    </footer>
+
+    <script src="./scripts/salary_management.js"></script>
+</body>
+</html>
