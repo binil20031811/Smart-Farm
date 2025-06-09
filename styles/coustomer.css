@@ -1,0 +1,375 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5F5; /* Light Gray */
+    color: #333333; /* Dark Gray */
+    padding-top: 140px; /* Add padding to body to account for fixed header and navbar */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #FFFFFF; /* White */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    position: fixed; /* Fix the header at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #4CAF50; /* Fresh Green */
+    position: fixed; /* Fix the navbar below the header */
+    top: 39px; /* Position below the header (adjust based on header height) */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF; /* White */
+}
+
+.navbar .logo span {
+    color: #2E7D32; /* Forest Green */
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    color: #FFFFFF; /* White */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #2E7D32; /* Forest Green */
+    border-bottom: 2px solid #2E7D32; /* Forest Green */
+}
+
+.navbar .nav-links a.active {
+    color: #2E7D32; /* Forest Green */
+    border-bottom: 2px solid #2E7D32; /* Forest Green */
+}
+
+.social-icons a {
+    text-decoration: none; /* Removes underline */
+    color: #333333; /* Dark Gray */
+    display: inline-block; /* Ensures clickable area is correct */
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover i {
+    color: #4CAF50; /* Fresh Green */
+}
+
+.social-icons i {
+    font-size: 20px; /* Adjust icon size */
+    margin-right: 10px; /* Space between icons */
+}
+
+.social-icons i:last-child {
+    margin-right: 0;
+}
+
+main {
+    padding: 20px 0;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    margin-left: 110px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px 1px 15px 1px;
+    text-align: center;
+    background-color: #FFFFFF; /* White */
+    transition: transform 0.2s, box-shadow 0.2s ease;
+}
+
+.product:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    width: 200px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50; /* Fresh Green */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2E7D32; /* Forest Green */
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #2E7D32; /* Forest Green */
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+#cart {
+    margin-left: 100px;
+    margin-top: 40px;
+    padding: 10px;
+    background-color: #FFFFFF; /* White */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+#total-price {
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: right;
+    color: #333333; /* Dark Gray */
+}
+
+.cb {
+    margin-left: 85%;
+}
+
+.sidebar {
+    position: fixed; /* Fix the navbar below the header */
+    top: 80px; /* Position below the header (adjust based on header height) */
+    left: 0;
+    width: 100px;
+    padding: 20px;
+    background-color: #2E7D32; /* Forest Green */
+    color: #ffffff;
+    position: fixed;
+    height: 100%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    border-bottom: 2px solid #4CAF50; /* Fresh Green */
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #4CAF50; /* Fresh Green */
+    border-radius: 5px;
+}
+
+.content {
+    margin-left: 240px;
+    padding: 20px;
+}
+
+.remove-button {
+    color: white;
+    padding: 5px 10px;
+}
+/* Add these styles to your existing CSS */
+
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.quantity-controls button:hover {
+    background-color: #2E7D32;
+}
+
+.remove-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.remove-button:hover {
+    background-color: #cc0000;
+}
+
+/* Add these styles to your existing CSS */
+
+/* Bill Popup */
+.bill-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.bill-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px; /* Adjust width as needed */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.bill-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bill-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #2E7D32; /* Forest Green */
+}
+
+.bill-header p {
+    margin: 5px 0 0;
+    color: #666;
+}
+
+.bill-body {
+    margin-bottom: 20px;
+}
+
+.bill-body ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bill-body ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.bill-body ul li:last-child {
+    border-bottom: none;
+}
+
+.bill-footer {
+    text-align: right;
+}
+
+.bill-footer p {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.bill-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.bill-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.bill-buttons button:first-child {
+    background-color: #4CAF50; /* Fresh Green */
+    color: white;
+}
+
+.bill-buttons button:first-child:hover {
+    background-color: #2E7D32; /* Forest Green */
+}
+
+.bill-buttons button:last-child {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.bill-buttons button:last-child:hover {
+    background-color: #ddd;
+}

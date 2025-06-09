@@ -1,0 +1,185 @@
+.form-section {
+    padding: 50px 20px;
+    background-color: #00796b;
+    color: #ffffff;
+    text-align: left;
+}
+
+.production-form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0px auto 0px auto;
+    
+}
+
+#para{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.production-form label {
+    font-weight: 600;
+}
+
+.production-form input, 
+.production-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.production-form button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ff3d00;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.production-form button:hover {
+    background-color: #e63900; /* Darker shade on hover */
+}
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #00695c;
+    color: #ffffff;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #004d40;
+}
+
+.header .contact-info {
+    font-size: 14px;
+}
+
+.header .social-icons i {
+    margin-left: 10px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.navbar .logo span {
+    color: #ff3d00;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar .nav-links a.active {
+    border-bottom: 2px solid #ff3d00;
+}
+
+.hero {
+    text-align: center;
+    
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero .buttons a {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.hero .buttons .btn-primary {
+    background-color: #00796b;
+}
+
+.hero .buttons .btn-secondary {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+}
+
+.hero img {
+    margin-top: 30px;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px 20px;
+    background-color: #004d40;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.feature:hover {
+
+    transform: translateY(-2px); /* Slightly lift the button on hover */
+  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
+  
+  }
+
+.features .feature {
+    background-color: #00796b;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+}
+
+.features .feature i {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.features .feature h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #004d40;
+    color: #ffffff;
+}

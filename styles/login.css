@@ -1,0 +1,185 @@
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333333; /* Dark Gray */
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #FFFFFF; /* White */
+    color: #333333; /* Dark Gray */
+    font-family: 'Open Sans', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+#signup-option {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#signup-option a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#signup-option a:hover {
+    text-decoration: underline;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: #4CAF50; /* Fresh Green */
+    outline: none;
+}
+
+
+.social-icons a {
+    text-decoration: none;
+    color: #333333; /* Dark Gray */
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover i {
+    color: #4CAF50; /* Fresh Green */
+}
+
+
+/* Button Styles */
+button {
+    width: 100%;
+    background-color: #4CAF50; /* Fresh Green */
+    color: #FFFFFF; /* White */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45A049; /* Darker Green */
+}
+
+/* General Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5F5; /* Light Gray */
+    color: #333333; /* Dark Gray */
+    padding-top: 140px; /* Add padding to body to account for fixed header and navbar */
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #FFFFFF; /* White */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #4CAF50; /* Fresh Green */
+    position: fixed;
+    top: 40px; /* Adjust based on header height */
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF; /* White */
+}
+
+.navbar .logo span {
+    color: #2E7D32; /* Forest Green */
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    color: #FFFFFF; /* White */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #2E7D32; /* Forest Green */
+    border-bottom: 2px solid #2E7D32; /* Forest Green */
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px 0;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333; /* Dark Gray */
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #2E7D32; /* Forest Green */
+    color: #FFFFFF; /* White */
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Content Box Styles */
+.content {
+    background-color: #FFFFFF; /* White */
+    border: 2px solid #4CAF50; /* Fresh Green */
+    border-radius: 20px;
+    margin: 0px 500px 50px 500px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+/* Checkbox Styles */
+.cb {
+    margin-left: 85%;
+}
